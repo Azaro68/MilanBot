@@ -106,13 +106,18 @@ class MessagingService:
         chat_id: int,
         message_data: dict,
     ) -> None:
-        keyboard_rows = [
-            [
-                InlineKeyboardButton(
-                    text=message_data["button_text"],
-                    url=message_data["button_url"],
-                )
+        buttons = message_data.get("buttons")
+        if buttons is None:
+            buttons = [
+                {
+                    "text": message_data["button_text"],
+                    "url": message_data["button_url"],
+                }
             ]
+
+        keyboard_rows = [
+            [InlineKeyboardButton(text=button["text"], url=button["url"])]
+            for button in buttons
         ]
 
         keyboard = InlineKeyboardMarkup(inline_keyboard=keyboard_rows)

@@ -21,6 +21,13 @@ TG_TWO = '<tg-emoji emoji-id="5438538369040678177">2️⃣</tg-emoji>'
 TG_THREE = '<tg-emoji emoji-id="5440601121573861927">3️⃣</tg-emoji>'
 TG_DOWN = '<tg-emoji emoji-id="5231102735817918643">👇</tg-emoji>'
 
+BOT_PLAY_URL = "https://t.me/jet_slotmania_bot?start=cfrWd8oo4au"
+SITE_PLAY_URL = "https://jetton.direct/cfrWd8oo4au?click_id=%7Bclick_id%7D"
+PLAY_BUTTONS = [
+    {"text": "Играть в боте", "url": BOT_PLAY_URL},
+    {"text": "Играть на сайте", "url": SITE_PLAY_URL},
+]
+
 RANDOM_MESSAGES = [
     {
         "image_path": str(ASSETS_DIR / "random_message_1.jpg"),
@@ -33,8 +40,7 @@ RANDOM_MESSAGES = [
 
 {TG_LIGHTNING}<b>Время ограничено</b> — активируй бонус прямо сейчас
 """.strip(),
-        "button_text": "Играть в боте",
-        "button_url": "https://t.me/jet_slotmania_bot?start=cfrWd8oo4au",
+        "buttons": PLAY_BUTTONS,
     },
     {
         "image_path": str(ASSETS_DIR / "random_message_2.jpg"),
@@ -47,8 +53,7 @@ RANDOM_MESSAGES = [
 
 {TG_DOWN} Нажимай кнопку ниже и активируй предложение
 """.strip(),
-        "button_text": "Активировать бонус",
-        "button_url": "https://t.me/jet_slotmania_bot?start=cfrWd8oo4au",
+        "buttons": PLAY_BUTTONS,
     },
     {
         "image_path": str(ASSETS_DIR / "random_message_3.jpg"),
@@ -61,8 +66,7 @@ RANDOM_MESSAGES = [
 
 {TG_LINK} <b>Промо уже активно</b> — не пропусти
 """.strip(),
-        "button_text": "Забрать бонус",
-        "button_url": "https://t.me/jet_slotmania_bot?start=cfrWd8oo4au",
+        "buttons": PLAY_BUTTONS,
     },
     {
         "image_path": str(ASSETS_DIR / "random_message_4.jpg"),
@@ -76,8 +80,7 @@ RANDOM_MESSAGES = [
 {TG_GIFT} <b>Бонус:</b> до <b>80 000₽</b> на баланс
 {TG_HUNDRED} <b>Депозит:</b> <b>250 FS + 425%</b>
 """.strip(),
-        "button_text": "Играть",
-        "button_url": "https://t.me/jet_slotmania_bot?start=cfrWd8oo4au",
+        "buttons": PLAY_BUTTONS,
     },
 ]
 
@@ -94,8 +97,7 @@ JOIN_REQUEST_MESSAGE = {
 
 {TG_HUNDRED}Вноси депозит и получай бонус: <b><u>250FS + 425% к пополнениям</u></b> {TG_ICE}
 """.strip(),
-    "button_text": "Играть",
-    "button_url": "https://t.me/jet_slotmania_bot?start=cfrWd8oo4au",
+    "buttons": PLAY_BUTTONS,
 }
 
 FIXED_MESSAGE_IMAGE_PATH = str(ASSETS_DIR / "fixed_message.jpg")

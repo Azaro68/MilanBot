@@ -4,9 +4,4 @@ def is_active_member_status(status: str) -> bool:
 
 def is_blocked_bot_error(error: Exception) -> bool:
     message = str(error).lower()
-    return (
-        "bot was blocked by the user" in message
-        or "forbidden" in message
-        or "chat not found" in message
-        or "user is deactivated" in message
-    )
+    return "bot was blocked by the user" in message

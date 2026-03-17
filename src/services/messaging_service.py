@@ -146,4 +146,5 @@ class MessagingService:
 
     async def _handle_send_error(self, user_id: int, error: Exception) -> None:
         if is_blocked_bot_error(error):
+            logger.info("Bot chat marked inactive because user_id=%s blocked the bot", user_id)
             await self.subscriber_repository.set_bot_chat_active(user_id, False)

@@ -116,7 +116,6 @@ class SubscriberRepository:
             UPDATE subscribers
             SET
                 welcome_sent_at = COALESCE(welcome_sent_at, $2),
-                last_random_sent_at = $2,
                 updated_at = NOW()
             WHERE user_id = $1
         """

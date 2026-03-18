@@ -64,9 +64,6 @@ class SchedulerService:
             await self.subscriber_repository.release_scheduler_lock(connection, SCHEDULER_LOCK_ID)
 
     async def process_subscriber(self, subscriber: Subscriber) -> None:
-        if not subscriber.is_bot_chat_active:
-            return
-
         still_subscribed = await self.subscription_service.ensure_active_subscription_state(subscriber.user_id)
         if not still_subscribed:
             logger.info("User user_id=%s is no longer subscribed, daily sends stopped", subscriber.user_id)

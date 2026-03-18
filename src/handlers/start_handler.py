@@ -35,8 +35,6 @@ def build_start_router(subscription_service: SubscriptionService) -> Router:
             )
             return
 
-        await subscription_service.mark_bot_chat_active(user.id, True)
-
         await message.answer(
             "Готово ✅\n"
             "Ежедневные уведомления активированы.\n"

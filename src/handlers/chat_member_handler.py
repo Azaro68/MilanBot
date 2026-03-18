@@ -29,9 +29,12 @@ def build_chat_member_router(
         is_active = is_active_member_status(new_status)
 
         if not was_active and is_active:
+            existing_subscriber = await subscription_service.find_by_user_id(user.id)
+            chat_id = existing_subscriber.chat_id if existing_subscriber is not None else user.id
+
             await subscription_service.upsert_private_user(
                 user_id=user.id,
-                chat_id=user.id,
+                chat_id=chat_id,
                 username=user.username,
                 first_name=user.first_name,
             )

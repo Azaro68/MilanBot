@@ -51,16 +51,20 @@ class SubscriptionService:
     async def find_by_user_id(self, user_id: int) -> Subscriber | None:
         return await self.subscriber_repository.find_by_user_id(user_id)
 
-    async def verify_channel_membership(self, user_id: int) -> bool:
+    async def verify_channel_membership(self, user_id: int) -> bool | None:
         try:
             member = await self.bot.get_chat_member(settings.channel_id, user_id)
             return is_active_member_status(member.status)
-        except TelegramAPIError as error:
+        except TelegramAPIError:
             logger.exception("Failed to verify channel membership for user_id=%s", user_id)
-            return False
+            return None
 
     async def ensure_active_subscription_state(self, user_id: int) -> bool:
         is_subscribed = await self.verify_channel_membership(user_id)
+        if is_subscribed is None:
+            subscriber = await self.find_by_user_id(user_id)
+            return subscriber.is_subscription_active if subscriber is not None else False
+
         if is_subscribed:
             await self.activate_subscription(user_id)
             return True

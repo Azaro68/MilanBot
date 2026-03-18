@@ -23,7 +23,10 @@ def build_my_chat_member_router(subscription_service: SubscriptionService) -> Ro
         if subscriber is None:
             return
 
-        await subscription_service.mark_bot_chat_active(user_id, is_active)
-        logger.info("Private chat state changed for user_id=%s, is_active=%s", user_id, is_active)
+        logger.info(
+            "Private chat state changed for user_id=%s, is_active=%s (no delivery state updated)",
+            user_id,
+            is_active,
+        )
 
     return router
